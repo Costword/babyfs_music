@@ -1,0 +1,137 @@
+name: babyfs_music
+description: A new Flutter project.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.4
+  dio: ^4.0.4 #网络请求工具
+  cached_network_image: ^3.2.0 #网络图片请求工具
+  flutter_vibrate: ^1.3.0  #震感反馈，比如点击按钮之后，手机震动一下
+  provider: ^6.0.2 #跨组件状态共享
+  audioplayers: ^0.20.1 #音乐播放器
+  flutter_screenutil: ^5.1.0 #屏幕适配组件
+  common_utils: ^2.0.2 #一些常用的转换组件（如时间戳转年月日等）
+  rect_getter: ^1.1.0 #用于获取listView中的每一个item的Rect
+  decimal: 1.5.0 #精度计算，可以在不损失精度的情况下对十进制数进行计算，不导入可能会引发iOS打包报错
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - images/itemRowBg@3x.png
+    - images/babyfsBg.png
+    - images/music_bg.jpeg
+    - images/music_control/children_song_all_loop@2x.png
+    - images/music_control/children_song_custom_list@2x.png
+    - images/music_control/children_song_ear_sel@2x.png
+    - images/music_control/children_song_ear@2x.png
+    - images/music_control/children_song_like_sel@2x.png
+    - images/music_control/children_song_like@2x.png
+    - images/music_control/children_song_list_play@2x.png
+    - images/music_control/children_song_list@2x.png
+    - images/music_control/children_song_memory@2x.png
+    - images/music_control/children_song_my_song_sel@2x.png
+    - images/music_control/children_song_my_song@2x.png
+    - images/music_control/children_song_name_logo@2x.png
+    - images/music_control/children_song_pause@2x.png
+    - images/music_control/children_song_play_bg@2x.png
+    - images/music_control/children_song_play@2x.png
+    - images/music_control/children_song_poster_default@2x.png
+    - images/music_control/children_song_single_loop@2x.png
+    - images/music_control/entranceIcon_ani1@2x.png
+    - images/music_control/entranceIcon_ani2@2x.png
+    - images/music_control/entranceIcon_ani3@2x.png
+    - images/music_control/entranceIcon@2x.png
+    - images/music_control/homeMusicAnimIcon1@2x.png
+    - images/music_control/homeMusicAnimIcon2@2x.png
+    - images/music_control/homeMusicAnimIcon3@2x.png
+    - images/music_control/homeMusicAnimIcon4@2x.png
+    - images/music_control/music_list_close@2x.png
+    - images/music_control/music_next@2x.png
+    - images/music_control/music_pause@2x.png
+    - images/music_control/music_play_disable@2x.png
+    - images/music_control/music_play@2x.png
+    - images/music_control/music_previous@2x.png
+    - images/music_control/music_slider_maximum@2x.png
+    - images/music_control/music_slider_minimum@2x.png
+    - images/music_control/music_slider_thumb@2x.png
+    - images/music_control/song_V3_course_imageCircly@2x.png
+    - images/music_control/song_V3_custom_normal@2x.png
+    - images/music_control/song_V3_custom_selected@2x.png
+    - images/music_control/songPlayContinuedAnimation@2x.png
+    - images/music_control/whiteEntranceIcon_1.png
+    - images/music_control/whiteEntranceIcon_2.png
+    - images/music_control/whiteEntranceIcon_3.png
+    #首页导航图标
+    - images/home_nav/home_discover_nor.png
+    - images/home_nav/home_discover_sel.png
+    - images/home_nav/home_wode_nor.png
+    - images/home_nav/home_wode_sel.png
+    
+    
+
+
+
+    
+    
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware.
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  fonts:
+    - family: iconfont
+      fonts:
+        - asset: fonts/iconfont.ttf
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
