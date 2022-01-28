@@ -73,7 +73,7 @@ class _MusicPlayBodyWidgetState extends State<MusicPlayBodyWidget> with SingleTi
             width: 300,
             height: 300,
             child: CachedNetworkImage(
-              imageUrl: MusicPlayListManger.of(context).currentItem.coverPicUrl,
+              imageUrl:MusicPlayListManger.of(context).currentItem!=null?MusicPlayListManger.of(context).currentItem.coverPicUrl:"",
               imageBuilder: (context, imageProvider) {
                 return Container(
                   decoration: BoxDecoration(

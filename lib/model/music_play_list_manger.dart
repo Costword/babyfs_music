@@ -29,7 +29,7 @@ class MusicPlayListManger extends ChangeNotifier {
   MusicSongListModel get playList => _currentPlayList;
 
 //当前播放音乐
-  SongItemModel get currentItem => _currentPlayList.songList[_currentIndex];
+  SongItemModel get currentItem => _currentPlayList!=null?_currentPlayList.songList[_currentIndex]:null;
 
 //当前的播放状态
   bool currentPlayStatus = false;
@@ -172,9 +172,11 @@ get currentSongPositionController =>_currentSongPositionController;
 
   //更新播放列表，并初始化音乐播放器
   Function updatePlayList(MusicSongListModel songList, int index) {
-    _currentPlayList = songList;
-    _currentIndex = index;
-    _play();
+    if(songList !=null){
+      _currentPlayList = songList;
+      _currentIndex = index;
+      _play();
+    }
   }
 
 //停止播放

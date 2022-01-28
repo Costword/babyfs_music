@@ -66,7 +66,7 @@ class _MusicPlayPageState extends State<MusicPlayPage>
         Scaffold(
             // backgroundColor: MusicStroe.Theme(context).theme,
             appBar: MusicAppBar(
-              title: MusicPlayListManger.of(context).currentItem.chineseName,
+              title:MusicPlayListManger.of(context).currentItem!=null?MusicPlayListManger.of(context).currentItem.chineseName:"",
               leftIcon: Icons.arrow_back_ios,
               rightIcon: Icons.star_border,
               leftOnTap: () {
