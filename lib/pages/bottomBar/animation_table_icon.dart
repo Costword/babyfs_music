@@ -35,6 +35,7 @@ class _TableBarIconState extends State<TableBarIcon>
   }
 
   void setAnimation() {
+    //先重制，然后执行一次
     widget.tableIconData.animationController.reset();
     widget.tableIconData.animationController.forward();
   }
@@ -74,6 +75,7 @@ class _TableBarIconState extends State<TableBarIcon>
                         child: RotationTransition(
                             turns: Tween(begin: -0.12, end: 0.0).animate(
                                 CurvedAnimation(
+                                    //Interval 代表在动画执行时间内 使用Interval内的值对动画时间进行分段，例如从0.5-1.0则代表从动画开始的前一半时间不做改变，在后面时间才开始执行
                                     parent: widget
                                         .tableIconData.animationController,
                                     curve: Interval(0.75, 1.0,

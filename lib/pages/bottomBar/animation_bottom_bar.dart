@@ -29,7 +29,8 @@ class _MusicAnimationBottomNavBarState extends State<MusicAnimationBottomNavBar>
   AnimationController animatiomController;
   Animation<double> animation;
   final myCurve = Cubic(0.68, 0, 0, 1.6);
-  List<Widget> barItems = [];
+  List<Widget> barItems = []; //整个tablebar的子类集合
+  List<Widget> iconItems = []; //图标的集合
   @override
   void initState() {
 //statefulWidget的生命周期：构造函数 - initState - didChangeDependencies - build - addPostFrameCallback-didUpdateWidget-deactivate-dispose
@@ -51,9 +52,9 @@ class _MusicAnimationBottomNavBarState extends State<MusicAnimationBottomNavBar>
 
   @override
   Widget build(BuildContext context) {
-    barItems.add(creatBackground());//添加背景
-    barItems.add(creatIndicator());//添加指示器
-    addNavBaritems();//添加items
+    barItems.add(creatBackground()); //添加背景
+    barItems.add(creatIndicator()); //添加指示器
+    addNavBaritems(); //添加items
 
     return Stack(
       clipBehavior: Clip.none,
@@ -72,7 +73,9 @@ class _MusicAnimationBottomNavBarState extends State<MusicAnimationBottomNavBar>
       //       blurRadius: 1.0,
       //       spreadRadius: 0.0)
       // ]
-      decoration: BoxDecoration(color: Colors.white,),
+      decoration: BoxDecoration(
+        color: Colors.white,
+      ),
     );
   }
 
@@ -134,7 +137,9 @@ class _MusicAnimationBottomNavBarState extends State<MusicAnimationBottomNavBar>
             begin: previousSelectedIndex.toDouble(),
             end: selectedIndex.toDouble())
         .animate(CurvedAnimation(parent: animatiomController, curve: myCurve));
-        animatiomController.forward(from: 0.0);
-        widget.selectCallBack(selectedIndex);
+    animatiomController.forward(from: 0.0);
+    Future.delayed(Duration(milliseconds: 400), () {
+      widget.selectCallBack(selectedIndex);
+    });
   }
 }
