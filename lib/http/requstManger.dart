@@ -1,29 +1,29 @@
 import 'dart:io';
 import 'package:flutter/services.dart';
 
-import 'global.dart' as global; 
+import 'global.dart' as global;
 import 'package:dio/dio.dart';
 import 'package:dio/adapter.dart';
 import 'api.dart';
 import 'logerInterceptor.dart';
 import 'result.dart';
+
 class DioClient {
-
-
-factory DioClient() => _getInstance();
+  factory DioClient() => _getInstance();
   static DioClient _instance;
   static DioClient get instance => _getInstance();
   Dio _dio;
   MethodChannel _methodChannel = MethodChannel("UserMethodChannel");
-   /// 获取单例内部方法
+
+  /// 获取单例内部方法
   static DioClient _getInstance() {
     if (_instance == null) {
-      _instance = DioClient._internal();
+      _instance = DioClient._myinternal();
     }
     return _instance;
   }
 
-   DioClient._internal() {
+  DioClient._myinternal() {
     if (_dio == null) {
       // 配置dio
       BaseOptions options = BaseOptions(
@@ -45,29 +45,29 @@ factory DioClient() => _getInstance();
         // setProxy();
         print("Android情况下配置");
       }
-      _dio.interceptors.add(QueuedInterceptorsWrapper(onRequest:(options, handler) async{
-        if(global.mixDev){
-          var headers = await _methodChannel.invokeMethod('getHeader');
-          Map<String, dynamic>.from(headers)
-              .keys
-              .forEach((key) => options.headers[key] = headers[key]);
-          options.headers['Content-Type'] = 'application/json; charset=utf-8';
-          handler.next(options);
-        }else{
-          if (global.shouldMockHeader) {
-            Map<String, dynamic>.from(global.mockHeader).keys.forEach(
-                (key) => options.headers[key] = global.mockHeader[key]
-                );
-                handler.next(options);
+      _dio.interceptors.add(QueuedInterceptorsWrapper(
+        onRequest: (options, handler) async {
+          if (global.mixDev) {
+            var headers = await _methodChannel.invokeMethod('getHeader');
+            Map<String, dynamic>.from(headers)
+                .keys
+                .forEach((key) => options.headers[key] = headers[key]);
+            options.headers['Content-Type'] = 'application/json; charset=utf-8';
+            handler.next(options);
+          } else {
+            if (global.shouldMockHeader) {
+              Map<String, dynamic>.from(global.mockHeader).keys.forEach(
+                  (key) => options.headers[key] = global.mockHeader[key]);
+              handler.next(options);
+            }
           }
-        }
-      },));
+        },
+      ));
       // 由于拦截器队列的执行顺序是FIFO，如果把log拦截器添加到了最前面，则后面拦截器对options的更改就不会被打印（但依然会生效）
       // 所以建议把log拦截添加到队尾。
       _dio.interceptors.add(MLogerInterceptor());
     }
   }
-
 
   Future<T> get<T>(
     String url, {
@@ -99,7 +99,6 @@ factory DioClient() => _getInstance();
       } else if (response.statusCode == 401) {
         //去登陆
         print("需要登陆");
-
       } else {
         // return response.statusCode;
         print("接口报错${response.statusCode}");
